@@ -45,9 +45,11 @@ Show native alert.
 Show app review page.
 For iOS 10.3 or later, call `SKStoreReviewController requestReview`.
 In other case, open appstore page.
+For the value of `appId`, specify 10 digits for iOS and package name for Android.
 
 ## NativeUtils.OpenReviewDialog(string appId, string title, string message, string okButton, string cancelButton)
 A confirmation dialog is displayed, and if 'OK', the review page is opened.
 For iOS 10.3 or later, don't display dialog and call `SKStoreReviewController requestReview`.
+For the value of `appId`, specify 10 digits for iOS and package name for Android.
 
 
