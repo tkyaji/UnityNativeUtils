@@ -16,12 +16,12 @@ extern "C" {
         NSString *bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         return __copyString(bundleVersion);
     }
-
+    
     const char *_NativeUtils_getVersionName() {
         NSString *bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
         return __copyString(bundleVersion);
     }
-
+    
     float _NativeUtils_getWidth() {
         return [UIScreen mainScreen].bounds.size.width;
     }
@@ -46,8 +46,8 @@ extern "C" {
         return __copyString(lang);
     }
     
-    void __NativeUtils_openReviewOnBrowser(const char *appId) {
-        NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/app/id%s?action=write-review", appId];
+    void __NativeUtils_openReviewOnBrowser(NSString *appId) {
+        NSString *url = [NSString stringWithFormat:@"https://itunes.apple.com/app/id%@?action=write-review", appId];
         NSURL *nsURL = [NSURL URLWithString:url];
         if ([[UIApplication sharedApplication] canOpenURL:nsURL]) {
             if ([[[UIDevice currentDevice] systemVersion] floatValue] < 10.0) {
@@ -57,16 +57,17 @@ extern "C" {
             }
         }
     }
-
+    
     void _NativeUtils_openReview(const char *appId) {
         if (NSClassFromString(@"SKStoreReviewController")) {
             [SKStoreReviewController requestReview];
         } else {
-            __NativeUtils_openReviewOnBrowser(appId);
+            __NativeUtils_openReviewOnBrowser([NSString stringWithUTF8String:appId]);
         }
     }
     
     void _NativeUtils_openReviewDialog(const char *appId, const char *title, const char *message, const char *okButton, const char *cancelButton) {
+        NSString *appIdStr = [NSString stringWithUTF8String:appId];
         if (NSClassFromString(@"SKStoreReviewController")) {
             [SKStoreReviewController requestReview];
         } else {
@@ -76,7 +77,7 @@ extern "C" {
             UIAlertAction *ok = [UIAlertAction actionWithTitle:[NSString stringWithUTF8String:okButton]
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction *action) {
-                                                           __NativeUtils_openReviewOnBrowser(appId);
+                                                           __NativeUtils_openReviewOnBrowser(appIdStr);
                                                        }];
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:[NSString stringWithUTF8String:cancelButton]
                                                              style:UIAlertActionStyleCancel
@@ -97,7 +98,8 @@ extern "C" {
         [alertController addAction:ok];
         [UnityGetGLViewController() presentViewController:alertController animated:YES completion:nil];
     }
-
+    
 #ifdef __cplusplus
 }
 #endif
+
