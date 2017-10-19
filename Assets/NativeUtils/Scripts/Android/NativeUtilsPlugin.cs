@@ -80,7 +80,7 @@ public class NativeUtilsPlugin {
         var alertDialog = new AndroidJavaObject("android.app.AlertDialog$Builder", activity);
         alertDialog.Call<AndroidJavaObject>("setTitle", title);
         alertDialog.Call<AndroidJavaObject>("setMessage", message);
-        alertDialog.Call<AndroidJavaObject>("setPositiveButton", null);
+        alertDialog.Call<AndroidJavaObject>("setPositiveButton", "OK", null);
         alertDialog.Call<AndroidJavaObject>("show");
     }
 
