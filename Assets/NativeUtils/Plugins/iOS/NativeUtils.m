@@ -23,11 +23,11 @@ extern "C" {
     }
     
     float _NativeUtils_getWidth() {
-        return [UIScreen mainScreen].bounds.size.width;
+        return UnityGetMainWindow().frame.size.width;
     }
     
     float _NativeUtils_getHeight() {
-        return [UIScreen mainScreen].bounds.size.height;
+        return UnityGetMainWindow().frame.size.height;
     }
     
     float _NativeUtils_getScale() {
