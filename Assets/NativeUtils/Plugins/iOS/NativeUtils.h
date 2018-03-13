@@ -1,5 +1,5 @@
-@import Foundation;
-@import SafariServices;
+#import <Foundation/Foundation.h>
+#import <SafariServices/SafariServices.h>
 
 const char *_NativeUtils_getShortVersionName();
 const char *_NativeUtils_getVersionName();
