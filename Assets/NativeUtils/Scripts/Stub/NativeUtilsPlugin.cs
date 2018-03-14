@@ -1,6 +1,7 @@
 ﻿#if UNITY_EDITOR || (!UNITY_IOS && !UNITY_ANDROID)
 
 using UnityEngine;
+using System;
 
 public class NativeUtilsPlugin {
 
@@ -40,10 +41,17 @@ public class NativeUtilsPlugin {
 #endif
     }
 
-    public static void OpenReviewDialog(string appId, string title, string message, string okButton = "OK", string cancelButton = "Cancel") {
+    public static void OpenReviewDialog(string appId, string title, string message, string okButton = "OK", string cancelButton = "Cancel", Action<bool> callback = null) {
 #if UNITY_EDITOR
         if (UnityEditor.EditorUtility.DisplayDialog(title, message, okButton, cancelButton)) {
             OpenReview(appId);
+            if (callback != null) {
+                callback.Invoke(true);
+            }
+        } else {
+            if (callback != null) {
+                callback.Invoke(false);
+            }
         }
 #endif
     }

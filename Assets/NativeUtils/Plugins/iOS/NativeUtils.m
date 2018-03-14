@@ -11,7 +11,6 @@ extern "C" {
         return retStr;
     }
     
-    
     const char *_NativeUtils_getShortVersionName() {
         NSString *bundleVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
         return __copyString(bundleVersion);
@@ -66,10 +65,11 @@ extern "C" {
         }
     }
     
-    void _NativeUtils_openReviewDialog(const char *appId, const char *title, const char *message, const char *okButton, const char *cancelButton) {
+    void _NativeUtils_openReviewDialog(const char *appId, const char *title, const char *message, const char *okButton, const char *cancelButton, void *callbackAction, _NativeUtils_cs_callback_method callbackMethod) {
         NSString *appIdStr = [NSString stringWithUTF8String:appId];
         if (NSClassFromString(@"SKStoreReviewController")) {
             [SKStoreReviewController requestReview];
+            callbackMethod(callbackAction, true);
         } else {
             UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithUTF8String:title]
                                                                                      message:[NSString stringWithUTF8String:message]
@@ -78,10 +78,13 @@ extern "C" {
                                                          style:UIAlertActionStyleDefault
                                                        handler:^(UIAlertAction *action) {
                                                            __NativeUtils_openReviewOnBrowser(appIdStr);
+                                                           callbackMethod(callbackAction, true);
                                                        }];
             UIAlertAction *cancel = [UIAlertAction actionWithTitle:[NSString stringWithUTF8String:cancelButton]
                                                              style:UIAlertActionStyleCancel
-                                                           handler:nil];
+                                                           handler:^(UIAlertAction *action) {
+                                                               callbackMethod(callbackAction, false);
+                                                           }];
             [alertController addAction:ok];
             [alertController addAction:cancel];
             [UnityGetGLViewController() presentViewController:alertController animated:YES completion:nil];

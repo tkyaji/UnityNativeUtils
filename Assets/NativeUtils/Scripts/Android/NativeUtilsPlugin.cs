@@ -63,15 +63,22 @@ public class NativeUtilsPlugin {
         Application.OpenURL("https://play.google.com/store/apps/details?id=" + appId);
     }
 
-    public static void OpenReviewDialog(string appId, string title, string message, string okButton = "OK", string cancelButton = "Cancel") {
+    public static void OpenReviewDialog(string appId, string title, string message, string okButton = "OK", string cancelButton = "Cancel", Action<bool> callback = null) {
         var activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity");
         var alertDialog = new AndroidJavaObject("android.app.AlertDialog$Builder", activity);
         alertDialog.Call<AndroidJavaObject>("setTitle", title);
         alertDialog.Call<AndroidJavaObject>("setMessage", message);
         alertDialog.Call<AndroidJavaObject>("setPositiveButton", okButton, new AndroidOnClickListener((int which) => {
             Application.OpenURL("https://play.google.com/store/apps/details?id=" + appId);
+            if (callback != null) {
+                callback.Invoke(true);
+            }
         }));
-        alertDialog.Call<AndroidJavaObject>("setNegativeButton", cancelButton, null);
+        alertDialog.Call<AndroidJavaObject>("setNegativeButton", cancelButton, new AndroidOnClickListener((int which) => {
+            if (callback != null) {
+                callback.Invoke(false);
+            }
+        }));
         alertDialog.Call<AndroidJavaObject>("show");
     }
 
