@@ -8,6 +8,8 @@ const char *_NativeUtils_getVersionName();
 float _NativeUtils_getWidth();
 float _NativeUtils_getHeight();
 float _NativeUtils_getScale();
+float _NativeUtils_getSafeAreaTop();
+float _NativeUtils_getSafeAreaBottom();
 void _NativeUtils_showWebView(const char *urlStr);
 const char *_NativeUtils_getLanguage();
 void _NativeUtils_openReview(const char *appId);

@@ -33,6 +33,20 @@ extern "C" {
         return [[UIScreen mainScreen] scale];
     }
     
+    float _NativeUtils_getSafeAreaTop() {
+        if ([UIWindow instancesRespondToSelector:@selector(safeAreaInsets)]) {
+            return [UIApplication sharedApplication].keyWindow.safeAreaInsets.top;
+        }
+        return 0;
+    }
+    
+    float _NativeUtils_getSafeAreaBottom() {
+        if ([UIWindow instancesRespondToSelector:@selector(safeAreaInsets)]) {
+            return [UIApplication sharedApplication].keyWindow.safeAreaInsets.bottom;
+        }
+        return 0;
+    }
+
     void _NativeUtils_showWebView(const char *urlStr) {
         NSURL *url = [NSURL URLWithString:[NSString stringWithUTF8String:urlStr]];
         SFSafariViewController *safariViewController = [[SFSafariViewController alloc] initWithURL:url];

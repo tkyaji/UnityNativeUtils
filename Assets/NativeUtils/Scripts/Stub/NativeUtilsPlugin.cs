@@ -25,6 +25,14 @@ public class NativeUtilsPlugin {
         return 1.0f;
 	}
 
+    public static float GetSafeAreaTop() {
+        return 0;
+    }
+
+    public static float GetSafeAreaBottom() {
+        return 0;
+    }
+
 	public static void ShowWebView(string url) {
 		Application.OpenURL(url);
 	}

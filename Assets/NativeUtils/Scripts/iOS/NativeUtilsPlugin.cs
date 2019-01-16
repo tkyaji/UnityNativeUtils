@@ -20,6 +20,12 @@ public class NativeUtilsPlugin {
 	[DllImport("__Internal")]
 	private static extern float _NativeUtils_getScale();
 
+    [DllImport("__Internal")]
+    private static extern float _NativeUtils_getSafeAreaTop();
+
+    [DllImport("__Internal")]
+    private static extern float _NativeUtils_getSafeAreaBottom();
+
 	[DllImport("__Internal")]
 	private static extern void _NativeUtils_showWebView(string url);
 
@@ -55,6 +61,14 @@ public class NativeUtilsPlugin {
 	public static float GetScale() {
 		return _NativeUtils_getScale();
 	}
+
+    public static float GetSafeAreaTop() {
+        return _NativeUtils_getSafeAreaTop();
+    }
+
+    public static float GetSafeAreaBottom() {
+        return _NativeUtils_getSafeAreaBottom();
+    }
 
 	public static void ShowWebView(string url) {
 		_NativeUtils_showWebView(url);

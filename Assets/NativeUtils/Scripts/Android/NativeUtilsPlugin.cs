@@ -49,6 +49,14 @@ public class NativeUtilsPlugin {
 		return metrics.Get<float>("scaledDensity");
 	}
 
+    public static float GetSafeAreaTop() {
+        return 0;
+    }
+
+    public static float GetSafeAreaBottom() {
+        return 0;
+    }
+
 	public static void ShowWebView(string url) {
 		Application.OpenURL(url);
 	}
