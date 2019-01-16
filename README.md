@@ -31,6 +31,12 @@ Return native view height.
 ## NativeUtils.GetScale()
 Return display density.
 
+## NativeUtils.GetSafeAreaTop()
+Return safeArea top size of iOS.
+
+## NativeUtils.GetSafeAreaBottom()
+Return safeArea bottom size of iOS.
+
 ## NativeUtils.ShowWebView(string url)
 Open URL. For Android, wrapper for `Application.OpenURL()`.
 For iOS, open it with SafariViewController.
