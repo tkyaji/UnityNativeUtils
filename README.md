@@ -58,3 +58,6 @@ A confirmation dialog is displayed, and if 'OK', the review page is opened.
 For iOS 10.3 or later, don't display dialog and call `SKStoreReviewController requestReview`.
 For the value of `appId`, specify 10 digits for iOS and package name for Android.
 When clicked ok button, return value of callback parameter is true. If used `SKStoreReviewController` is always true.
+
+## NativeUtils.HapticFeedback(NativeUtils.FeedbackType type)
+Call iOS HapticFeedback. For Android, emulate with vibration.
