@@ -61,3 +61,6 @@ When clicked ok button, return value of callback parameter is true. If used `SKS
 
 ## NativeUtils.HapticFeedback(NativeUtils.FeedbackType type)
 Call iOS HapticFeedback. For Android, emulate with vibration.
+
+## NativeUtils.IsHapticFeedbackSupported()
+Returns if the device supports HapticFeedback. Always true for Android.
