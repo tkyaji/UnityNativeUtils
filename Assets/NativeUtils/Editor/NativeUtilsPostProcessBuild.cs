@@ -17,6 +17,7 @@ public class NativeUtilsPostProcessBuild {
         string target = proj.TargetGuidByName("Unity-iPhone");
 
         proj.AddFrameworkToProject(target, "SafariServices.framework", false);
+        proj.AddFrameworkToProject(target, "StoreKit.framework", false);
 
         File.WriteAllText(projPath, proj.WriteToString());
     }
