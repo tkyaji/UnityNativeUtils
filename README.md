@@ -10,57 +10,57 @@ Import UnityNativeUtils.unitypackage
 
 # API
 
-## NativeUtils.GetDataDirectory()
+## string NativeUtils.GetDataDirectory()
 Return the data directory of the application. Android returns `getFilesDir`.
 
-## NativeUtils.GetCacheDirectory()
+## string NativeUtils.GetCacheDirectory()
 Return the cache directory of the application. Android returns `getCacheDir`.
 
-## NativeUtils.GetVersion()
+## string NativeUtils.GetVersion()
 Return display version of application. Same value as `Application.identifier`.
 
-## NativeUtils.GetBuildNumber()
+## string NativeUtils.GetBuildNumber()
 Return application build number.
 
-## NativeUtils.GetWidth()
+## float NativeUtils.GetWidth()
 Return native view width.
 
-## NativeUtils.GetHeight()
+## float NativeUtils.GetHeight()
 Return native view height.
 
-## NativeUtils.GetScale()
+## float NativeUtils.GetScale()
 Return display density.
 
-## NativeUtils.GetSafeAreaTop()
+## float NativeUtils.GetSafeAreaTop()
 Return safeArea top size of iOS.
 
-## NativeUtils.GetSafeAreaBottom()
+## float NativeUtils.GetSafeAreaBottom()
 Return safeArea bottom size of iOS.
 
-## NativeUtils.ShowWebView(string url)
+## void NativeUtils.ShowWebView(string url)
 Open URL. For Android, wrapper for `Application.OpenURL()`.
 For iOS, open it with SafariViewController.
 
-## NativeUtils.GetLanguage()
+## string NativeUtils.GetLanguage()
 Get language setting from native.
 
-## NativeUtils.Alert(string title, string message)
+## void NativeUtils.Alert(string title, string message)
 Show native alert.
 
-## NativeUtils.OpenReview(string appId)
+## void NativeUtils.OpenReview(string appId)
 Show app review page.
 For iOS 10.3 or later, call `SKStoreReviewController requestReview`.
 In other case, open appstore page.
 For the value of `appId`, specify 10 digits for iOS and package name for Android.
 
-## NativeUtils.OpenReviewDialog(string appId, string title, string message, string okButton, string cancelButton, Action<bool> callback)
+## void NativeUtils.OpenReviewDialog(string appId, string title, string message, string okButton, string cancelButton, Action<bool> callback)
 A confirmation dialog is displayed, and if 'OK', the review page is opened.
 For iOS 10.3 or later, don't display dialog and call `SKStoreReviewController requestReview`.
 For the value of `appId`, specify 10 digits for iOS and package name for Android.
 When clicked ok button, return value of callback parameter is true. If used `SKStoreReviewController` is always true.
 
-## NativeUtils.HapticFeedback(NativeUtils.FeedbackType type)
+## void NativeUtils.HapticFeedback(NativeUtils.FeedbackType type)
 Call iOS HapticFeedback. For Android, emulate with vibration.
 
-## NativeUtils.IsHapticFeedbackSupported()
+## bool NativeUtils.IsHapticFeedbackSupported()
 Returns if the device supports HapticFeedback. Always true for Android.
