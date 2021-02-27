@@ -94,6 +94,11 @@ public class NativeUtils {
 	public static void HapticFeedback(NativeUtils.FeedbackType type) {
 		plugin.HapticFeedback(type);
 	}
+
+	public static bool IsTablet() {
+		return plugin.IsTablet();
+	}
+
 }
 
 
@@ -114,4 +119,5 @@ public interface NativeUtilsPlugin {
 	void Alert(string title, string message);
 	bool IsHapticFeedbackSupported();
 	void HapticFeedback(NativeUtils.FeedbackType type);
+	bool IsTablet();
 }

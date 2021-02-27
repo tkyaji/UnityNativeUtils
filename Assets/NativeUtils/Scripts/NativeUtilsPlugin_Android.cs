@@ -209,6 +209,11 @@ public class NativeUtilsPlugin_Android : NativeUtilsPlugin {
         }
     }
 
+    public bool IsTablet() {
+        int smallestScreenWidthDp = jCurrentActivity.Call<AndroidJavaObject>("getResources").Call<AndroidJavaObject>("getConfiguration").Get<int>("smallestScreenWidthDp");
+        return smallestScreenWidthDp >= 600;
+    }
+
 }
 
 #endif

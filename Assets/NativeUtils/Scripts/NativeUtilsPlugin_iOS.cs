@@ -126,6 +126,10 @@ public class NativeUtilsPlugin_iOS : NativeUtilsPlugin {
     public void HapticFeedback(NativeUtils.FeedbackType type) {
         _NativeUtils_hapticfeedback(type);
     }
+
+    public bool IsTablet() {
+        return SystemInfo.deviceModel.Contains("iPad");
+    }
 }
 
 #endif

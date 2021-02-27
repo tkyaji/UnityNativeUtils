@@ -19,15 +19,15 @@ public class NativeUtilsPlugin_Stub : NativeUtilsPlugin {
     }
 
     public float GetWidth() {
-        return Screen.width;
+        return Screen.width / 3.0f;
     }
 
     public float GetHeight() {
-        return Screen.height;
+        return Screen.height / 3.0f;
     }
 
     public float GetScale() {
-        return 1.0f;
+        return 3.0f;
     }
 
     public float GetSafeAreaTop() {
@@ -80,6 +80,10 @@ public class NativeUtilsPlugin_Stub : NativeUtilsPlugin {
     }
 
     public void HapticFeedback(NativeUtils.FeedbackType type) {
+    }
+
+    public bool IsTablet() {
+        return false;
     }
 
 }
